@@ -5,16 +5,20 @@ class Solution {
      * @return {number[]}
      */
     twoSum(nums, target) {
+        const map = new Map(); 
         for (let i = 0; i < nums.length; i++) {
-           for (let j = 1; j < nums.length; j++) {
-            if(nums[i] + nums[j] === target)
-                return [i , j]
+            const current = nums[i]
+            const complement = target - current
+            if(map.has(complement)) {
+                return [map.get(complement), i]
             }
-            
+
+            map.set(current, i)
         }
+        return [];   
     }
 }
 
 const solutio1 = new Solution()
 
-console.log(solutio1.twoSum([5,5], 10))
+console.log(solutio1.twoSum([5,5, 4, 6], 9))
